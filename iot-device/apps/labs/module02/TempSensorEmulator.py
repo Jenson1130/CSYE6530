@@ -13,7 +13,7 @@ from builtins import str
 from asyncio.tasks import sleep
 from test.test_enum import threading
 
-Sens = SensorData.SensorData()
+SenDat = SensorData.SensorData()
 SmtpClientConnector = SmtpClientConnector.SmtpClientConnector()
 
 
@@ -22,11 +22,11 @@ class TempSensorEmulator(threading.Thread):
     isPrevTempSet = False
     rateInSec = DEFAULT_RATE_IN_SEC
     
-    Sens.setName('Temperature')
+    SenDat.setName('Temperature')
     
     lowVal = 5
     highVal = 30
-    alertDiff = 5
+    alertDiff = 1
     
     def __init__(self, rateInSec = DEFAULT_RATE_IN_SEC):
         super(TempSensorEmulator, self).__init__()
@@ -41,10 +41,10 @@ class TempSensorEmulator(threading.Thread):
         while True:
             if self.enableEmulator:
                 self.curTemp = uniform(float(self.lowVal), float(self.highVal))
-                Sens.addValue(self.curTemp)
+                SenDat.addValue(self.curTemp)
                 
                 print('\n------------')
-                print('New sensor reading:')
+                print('Sensor reading:')
                 print(' ' + str(self.curTemp))
                 
                 if self.isPrevTempSet == False:
@@ -52,14 +52,14 @@ class TempSensorEmulator(threading.Thread):
                     self.isPrevTempSet = True
                 
                 else:
-                    print(Sens.__str__())
-                    print('inCurTemp - AvgValue =' + str(abs(self.curTemp - Sens.getAvgValue())))
+                    print(SenDat.__str__())
+                    print('inCurTemp - AvgValue =' + str(abs(self.curTemp - SenDat.getAvgValue())))
                     print('Threshold =' + str(self.alertDiff))
                     
-                    if (abs(self.curTemp - Sens.getAvgValue()) >= self.alertDiff):
-                        print('inCurrent temp exceeds average by >' + str(self.alertDiff) + 'TriggeringAlert...')
-                        self.sensorData = Sens.__str__()
-                        SmtpClientConnector.publishMessage('Exceptional Sensor Data [test]', self.sensorData) 
+                    if (abs(self.curTemp - SenDat.getAvgValue()) >= self.alertDiff):
+                        print('The Current temperature exceeds average by >' + str(self.alertDiff) + 'TriggeringAlert...')
+                        self.sensorData = SenDat.__str__()
+                        SmtpClientConnector.publishMessage('Exceptional Sensor Data', self.sensorData) 
                     sleep(self.rateInSec)
                     
                 

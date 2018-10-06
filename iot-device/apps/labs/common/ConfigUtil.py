@@ -4,27 +4,40 @@ Created on Sep 15, 2018
 @author: stannis
 '''
 import configparser
-from builtins import str
+import os
 
-config = configparser.ConfigParser()
-
+Default_CONFIG_FILE = '/Users/stannis/eclipse-workspace2/iot-device/data/ConnectedDeviceConfig.props'
 
 class ConfigUtil():
-    def __init__(self, fileAddr):
-        self.fileAddr = fileAddr
-        print('-----------Environment Setting------------')
-        print('Already get the config' + str(self.fileAddr))
-        
-        
+    configfile = Default_CONFIG_FILE
+    configdata = configparser.ConfigParser()
+    isLoaded   = False
+    
+    def __init__(self,configFile):
+        print(configFile)
+        if(configFile != ''):
+            print('hello')
+            self.configfile = configFile
+    
     def loadConfig(self):
-        self.config = config.read(self.fileAddr)
-        print('Already get the config' + str(self.config))
-        
-    def getProperty(self,section,key):
-        self.key = key 
-        
-        return self.key
-        
+        print(Default_CONFIG_FILE)
+        if(os.path.exists(self.configfile)):
+            self.configdata.read(self.configfile)
+            self.isLoaded = True
+    
+    def getConfig(self, forceReload = False):
+        if(self.isLoaded == False or forceReload):
+            self.loadConfig()
+        return self.configdata
+    
+    def getConfigFile(self):
+        return self.configfile
+
+    def getProperty(self,section, key, forceReload = False):
+        return self.getConfig(forceReload).get(section, key)
+    
+    def isConfigDataLoaded(self):
+        return self.isLoaded
     
 
 

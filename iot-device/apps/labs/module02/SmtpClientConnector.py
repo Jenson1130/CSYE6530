@@ -24,7 +24,7 @@ class SmtpClientConnector(threading.Thread):
     classdocs
     '''
     def __init__(self):
-        self.config = ConfigUtil.ConfigUtil('../../../data/ConnectedDevicesConfig.props')
+        self.config = ConfigUtil.ConfigUtil('')
         self.config.loadConfig()
         print('Configuration data...\n' + str(self.config))
         
@@ -66,10 +66,14 @@ class SmtpClientConnector(threading.Thread):
                 print(str(msgText))
                 print('-----------------------')
                 server = smtplib.SMTP_SSL(host,port)
+                print(1)
                 server.ehlo()
-                server.starttls()
+                print(2)
+                #server.starttls()
                 server.login(fromAddr, authToken)
+                print(3)
                 server.sendmail(fromAddr, toAddr, msgText)
+                print(4)
                 server.quit()
                 server.close()
                 
