@@ -16,7 +16,7 @@ from labs.common import SensorData
 #from smtplib import server, fromaddr
 
 
-Sens = SensorData.SensorData()
+SenDat = SensorData.SensorData()
 
 
 class SmtpClientConnector(threading.Thread):
@@ -66,14 +66,14 @@ class SmtpClientConnector(threading.Thread):
                 print(str(msgText))
                 print('-----------------------')
                 server = smtplib.SMTP_SSL(host,port)
-                print(1)
+                #print(1)
                 server.ehlo()
-                print(2)
+                #print(2)
                 #server.starttls()
                 server.login(fromAddr, authToken)
-                print(3)
+                #print(3)
                 server.sendmail(fromAddr, toAddr, msgText)
-                print(4)
+                
                 server.quit()
                 server.close()
                 
@@ -92,6 +92,14 @@ class SmtpClientConnector(threading.Thread):
             print("Failed to send the Alert-Email!")
             print('-----------------------')
                 
+#server = smtplib.SMTP_SSL("smtp.mail.yahoo.com",465)
+#print(1)
+#server.ehlo()
+#print(2)
+#server.starttls()
+#server.login("li.zexin@yahoo.com", "condevice")
+#print(3)
+#server.sendmail("li.zexin@yahoo.com", "jensonli1130@gmail.com", "msgText")
             
                 
     

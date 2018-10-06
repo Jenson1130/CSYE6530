@@ -10,11 +10,11 @@ port = 1883
 [smtp.cloud]
 host = smtp.mail.yahoo.com
 port = 465
-fromAddr = a.yuan36@yahoo.com
+fromAddr = li.zexin@yahoo.com
 toAddr = jensonli1130@gmail.com
 toMediaAddr = Not Set
 toTxtAddr = Not Set
-authToken = connecteddevices
+authToken = condevice
 enableAuth = True
 enableCrypt = True
 

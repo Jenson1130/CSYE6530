@@ -10,7 +10,7 @@ tempSensorEmulator = TempSensorEmulator.TempSensorEmulator()
 
 tempSensorEmulator.daemon = True
 print('-----------------')
-print('Starting system performance and daemon thread')
+print('Starting:')
 tempSensorEmulator.enableEmulator = True
 
 tempSensorEmulator.start()
