@@ -19,7 +19,7 @@ SmtpClientConnector = SmtpClientConnector.SmtpClientConnector()
 
 class TempSensorEmulator(threading.Thread):
     enableEmulator = False
-    isPrevTempSet = False
+    PrevTempS = False
     rateInSec = DEFAULT_RATE_IN_SEC
     
     SenDat.setName('Temperature')
@@ -47,13 +47,13 @@ class TempSensorEmulator(threading.Thread):
                 print('Sensor reading:')
                 print(' ' + str(self.curTemp))
                 
-                if self.isPrevTempSet == False:
-                    self.prevTemp = self.curTemp
-                    self.isPrevTempSet = True
+                if self.PrevTempSet == False:
+                    self.prevTempS = self.curTemp
+                    self.PrevTempS = True
                 
                 else:
                     print(SenDat.__str__())
-                    print('inCurTemp - AvgValue =' + str(abs(self.curTemp - SenDat.getAvgValue())))
+                    print('CurTemp - AvgValue =' + str(abs(self.curTemp - SenDat.getAvgValue())))
                     print('Threshold =' + str(self.alertDiff))
                     
                     if (abs(self.curTemp - SenDat.getAvgValue()) >= self.alertDiff):

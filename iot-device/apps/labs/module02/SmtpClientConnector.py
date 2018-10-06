@@ -48,50 +48,19 @@ class SmtpClientConnector(threading.Thread):
         msgText = msg.as_string()
         
         # send e-mail notification
-        """
-        
-        smtpServer = smtplib.SMTP_SSL(host, port) 
-        smtpServer.ehlo()
-        smtpServer.login(fromAddr, authToken) 
-        smtpServer.sendmail(fromAddr, toAddr, msgText) 
-        smtpServer.close()
-        """
-        
-        def mail():
-            ret = True
-            try:
-                print('')
-                print('The content of msgText:')
-                print('-----------------------')
-                print(str(msgText))
-                print('-----------------------')
-                server = smtplib.SMTP_SSL(host,port)
-                #print(1)
-                server.ehlo()
-                #print(2)
-                #server.starttls()
-                server.login(fromAddr, authToken)
-                #print(3)
-                server.sendmail(fromAddr, toAddr, msgText)
-                
-                server.quit()
-                server.close()
-                
-            except Exception:
-                ret = False
-            return ret
         
         
-        ret = mail()
-        if ret:
-            print('-----------------------')
-            print("The Alert-Email has been sent")
-            print('-----------------------')
-        else:
-            print('-----------------------')
-            print("Failed to send the Alert-Email!")
-            print('-----------------------')
-                
+        server = smtplib.SMTP_SSL(host, port) 
+        server.ehlo()
+        server.login(fromAddr, authToken) 
+        server.sendmail(fromAddr, toAddr, msgText) 
+        server.close()
+        print('---------------------------')
+        print('The content of msgText:')
+        print(str(msgText))
+        print('Successful! The E-mail has been sent!')
+        print('---------------------------')
+
 #server = smtplib.SMTP_SSL("smtp.mail.yahoo.com",465)
 #print(1)
 #server.ehlo()
@@ -100,7 +69,7 @@ class SmtpClientConnector(threading.Thread):
 #server.login("li.zexin@yahoo.com", "condevice")
 #print(3)
 #server.sendmail("li.zexin@yahoo.com", "jensonli1130@gmail.com", "msgText")
-            
+
                 
     
         
