@@ -64,8 +64,8 @@ class SensorData():
             str(self.name + ':'  + \
             os.linesep + '\tTime:'   + self.timeStamp + \
             os.linesep + '\tCurrent:' + str(self.curValue) + \
-            os.linesep + '\tAverage:' + str(self.avgValue) + \
-            os.linesep + '\tSamples:' + str(self.sampleValue) + \
+            #os.linesep + '\tAverage:' + str(self.avgValue) + \
+            #os.linesep + '\tSamples:' + str(self.sampleValue) + \
             os.linesep + '\tMinimum:' + str(self.minValue) + \
             os.linesep + '\tMaximum:' + str(self.maxValue))
         return customStr                              

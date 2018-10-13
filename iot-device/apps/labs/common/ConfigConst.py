@@ -63,4 +63,3 @@ POLL_CYCLES_KEY     = 'pollCycleSecs'
 
 
 
-8

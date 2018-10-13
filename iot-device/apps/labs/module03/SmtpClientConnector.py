@@ -1,28 +1,23 @@
 '''
-Created on Sep 15, 2018
+Created on Oct 08, 2018
 
 @author: stannis
 '''
+import os,sys
+sys.path.append('/home/pi/Desktop/iot-device/apps')
 from labs.common import ConfigUtil
-from email.mime.multipart import MIMEMultipart
-#from labs.module02.TempSensorEmulator import Sens
-import threading
 from labs.common import ConfigConst
-from email.mime.text import MIMEText
-from builtins import str
 import smtplib
-#from nntplib import port
+from email.mime.text import MIMEText
 from labs.common import SensorData
-#from smtplib import server, fromaddr
+from email.mime.multipart import MIMEMultipart
 
-
-SenDat = SensorData.SensorData()
-
-
-class SmtpClientConnector(threading.Thread):
-    '''
-    classdocs
-    '''
+SData = SensorData.SensorData()
+ 
+class SmtpClientConnector:
+    smtpConfigReader = None
+    
+    
     def __init__(self):
         self.config = ConfigUtil.ConfigUtil('')
         self.config.loadConfig()
@@ -60,16 +55,3 @@ class SmtpClientConnector(threading.Thread):
         print(str(msgText))
         print('Successful! The E-mail has been sent!')
         print('---------------------------')
-
-#server = smtplib.SMTP_SSL("smtp.mail.yahoo.com",465)
-#print(1)
-#server.ehlo()
-#print(2)
-#server.starttls()
-#server.login("li.zexin@yahoo.com", "condevice")
-#print(3)
-#server.sendmail("li.zexin@yahoo.com", "jensonli1130@gmail.com", "msgText")
-
-                
-    
-        
