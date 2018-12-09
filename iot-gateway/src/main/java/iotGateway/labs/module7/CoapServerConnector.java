@@ -37,10 +37,10 @@ public class CoapServerConnector {
 
 		
 		
-		System.out.println("in coap constructor");
+
 		_coapServer = new CoapServer();
 		
-		TempResourceHandler resourceTemp = new TempResourceHandler("temp");
+		TempResourceHandler resourceTemp = new TempResourceHandler("zexinTemp");
 		addResource(resourceTemp);
 	}
 	
@@ -56,9 +56,9 @@ public class CoapServerConnector {
 		}
 	}
 	public void start() {
-		System.out.println("in coap start");
+
 		if (_coapServer == null) {
-			System.out.println("in coap, coapserver is null");
+
 
 			_Logger.info("Creating CoAP server instance and 'temp' handler...");
 			_coapServer = new CoapServer();
@@ -67,7 +67,7 @@ public class CoapServerConnector {
 		}
 		_Logger.info("Starting CoAP server...");
 		_coapServer.start();
-		System.out.println("coap endpoint :  ---" + _coapServer.getEndpoint(5683).getAddress());
+
 	}
 	
 	public void stop() {

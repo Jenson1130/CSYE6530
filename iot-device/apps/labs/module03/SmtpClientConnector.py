@@ -3,8 +3,6 @@ Created on Oct 08, 2018
 
 @author: stannis
 '''
-import os,sys
-sys.path.append('/home/pi/Desktop/iot-device/apps')
 from labs.common import ConfigUtil
 from labs.common import ConfigConst
 import smtplib

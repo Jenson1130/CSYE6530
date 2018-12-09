@@ -1,6 +1,9 @@
 package iotGateway.labs.module7;
 
 import java.util.logging.Logger;
+
+import iotGateway.labs.module8.TempActuatorSubscriberApp;
+
 import java.util.logging.Level;
 
 public class CoapServerTestApp {
@@ -29,7 +32,9 @@ public class CoapServerTestApp {
 
 	
 	public void start() {
-		System.out.println("in app start");
+		
+		TempActuatorSubscriberApp tempApp =new  TempActuatorSubscriberApp();
+		tempApp.start();
 		CoapServerConnector serverConn = new CoapServerConnector();
 		serverConn.start();
 		

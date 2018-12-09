@@ -6,6 +6,8 @@ import org.eclipse.californium.core.CoapResource;
 import org.eclipse.californium.core.coap.CoAP.ResponseCode;
 import org.eclipse.californium.core.server.resources.CoapExchange;
 
+import iotGateway.labs.module8.MqttClientConnector;
+
 
 public class TempResourceHandler extends CoapResource{
 	//static
@@ -23,7 +25,7 @@ public class TempResourceHandler extends CoapResource{
 		 */
 		public TempResourceHandler(String name) {
 			super(name);
-			System.out.println("in temp constructor");
+			
 		}
 
 		/**
@@ -50,8 +52,14 @@ public class TempResourceHandler extends CoapResource{
 		public void handlePOST(CoapExchange exchange) {
 			String responseMsg =  "Response to:" + super.getName();
 
-			System.out.println(exchange.getRequestText());
+			
 			exchange.respond(ResponseCode.VALID, responseMsg);
+			
+			String msg = exchange.getRequestText();
+			MqttClientConnector mqttclient = new MqttClientConnector("things.ubidots.com", "A1E-nihpsoMgMpaZ87DGPOGc5TsiTX6IEM","/Users/stannis/Desktop/csye6530/ubidots.pem","A1E-nihpsoMgMpaZ87DGPOGc5TsiTX6IEM");
+			mqttclient.connect();
+			mqttclient.publishMessage("/v1.6/devices/HomeIotGateway/tempsensor", 2, exchange.getRequestText().getBytes());
+			
 			
 			_Logger.info("Handling POST:" + responseMsg);
 			_Logger.info(exchange.getRequestCode().toString() + ": " + exchange.getRequestText());

@@ -6,7 +6,7 @@ Created on Sep 15, 2018
 from labs.common import ConfigUtil
 from email.mime.multipart import MIMEMultipart
 #from labs.module02.TempSensorEmulator import Sens
-import threading
+from test.test_enum import threading
 from labs.common import ConfigConst
 from email.mime.text import MIMEText
 from builtins import str

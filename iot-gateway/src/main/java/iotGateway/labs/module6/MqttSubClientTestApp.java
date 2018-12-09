@@ -17,7 +17,7 @@ public class MqttSubClientTestApp {
               e.printStackTrace();
        } 
     }
-    private MqttClientConnector _mqttClient;
+    private MqttConnector _mqttClient;
     /**
      * Default.
      */
@@ -32,9 +32,9 @@ public class MqttSubClientTestApp {
      */
     public void start()
     {
-        _mqttClient = new MqttClientConnector("test.mosquitto.org","tcp",1883);
+        _mqttClient = new MqttConnector("test.mosquitto.org","tcp",1883);
         _mqttClient.connect();
-        String topicName = "test";
+        String topicName = "myActuatorData";
         _mqttClient.subscribeToTopic(topicName);
 
     }

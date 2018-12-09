@@ -4,8 +4,8 @@ import java.util.logging.Logger;
 import iotGateway.labs.module8.MqttClientConnector
 ;
 public class TempActuatorSubscriberApp {
-	private String _userName = "A1E-gyEfBVN4xE7fdLLsY92xngiYHENTCN";
-	private String _authToken = null;
+	private String _userName = "";
+	private String _authToken = "";
 	private String _pemFileName = "/Users/stannis/Desktop/csye6530/ubidots.pem";
 	private String _host = "things.ubidots.com";
 

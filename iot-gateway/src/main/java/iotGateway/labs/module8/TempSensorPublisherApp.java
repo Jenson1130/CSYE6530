@@ -4,8 +4,8 @@ import java.util.logging.Logger;
 import iotGateway.labs.module8.MqttClientConnector;
 
 public class TempSensorPublisherApp {
-	private String _userName = "A1E-gyEfBVN4xE7fdLLsY92xngiYHENTCN";
-	private String _authToken = null;
+	private String _userName = "";
+	private String _authToken = "A1E-gyEfBVN4xE7fdLLsY92xngiYHENTCN";
 	private String _pemFileName ="/Users/stannis/Desktop/csye6530/ubidots.pem";
 	private String _host = "things.ubidots.com";
 	
@@ -39,7 +39,7 @@ public class TempSensorPublisherApp {
 		_mqttClient = new MqttClientConnector(_host, _userName, _pemFileName, _authToken);
 		_mqttClient.connect();
 		String topicName = "/v1.6/devices/HomeIotGateway/tempsensor";
-	    String payload = "13";
+	    String payload = "28";
 		_mqttClient.publishMessage(topicName, 0, payload.getBytes());
 		_mqttClient.disconnect();
 	}

@@ -24,6 +24,8 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 
+import iotGateway.labs.module6.MqttConnector;
+
 public class MqttClientConnector implements MqttCallback{
 		private static final Logger _Logger = Logger.getLogger(MqttClientConnector.class.getName());
 
@@ -216,7 +218,15 @@ public class MqttClientConnector implements MqttCallback{
 		 */
 		public void messageArrived(String data, MqttMessage msg) throws Exception {
 			// TODO: should you analyze the message or just log it?
+			
+			String payload = msg.toString();
+			MqttConnector mqtt = new MqttConnector("test.mosquitto.org","tcp",1883);
+			mqtt.connect();
+			String topicName = "myActuatorData";
+//			payload = "1";
+			mqtt.publishMessage(topicName, 2, payload.getBytes());
 			_Logger.info("Message arrived: " + data + ", " + msg.getId() + msg.toString());
+
 		}
 
 

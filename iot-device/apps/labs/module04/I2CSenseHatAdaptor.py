@@ -3,12 +3,13 @@ Created on Oct 12, 2018
 
 @author: stannis
 '''
+import os,sys
+sys.path.append('/home/pi/Desktop/zexin/iot-device/apps')
 import smbus
 import threading
 
 from time import sleep
-import os,sys
-sys.path.append('/home/pi/Desktop/iot-device/apps')
+
 from labs.common import ConfigUtil
 from labs.common import ConfigConst
 
@@ -23,11 +24,6 @@ pressAddr = 0x5C # address for pressure sensor
 humidAddr = 0x5F # address for humidity sensor
 begAddr = 0x28 
 totBytes = 6
-accel = None
-mag = None
-pres = None
-humid = None
-
 
 DEFAULT_RATE_IN_SEC = 5
 
@@ -42,7 +38,6 @@ class I2CSenseHatAdaptor(threading.Thread):
              
         print('Configuration data...\n' + str(self.config))
         self.initI2CBus()
-        
     def initI2CBus(self):
         print("Initializing I2C bus and enabling I2C addresses...")
         i2cBus.write_byte_data(accelAddr, enableControl, enableMeasure)
@@ -55,30 +50,32 @@ class I2CSenseHatAdaptor(threading.Thread):
         self.pres = i2cBus.read_i2c_block_data(pressAddr, begAddr, totBytes)
         self.humid = i2cBus.read_i2c_block_data(humidAddr,begAddr, totBytes)
         
-    def displayAccelerometerData(self):
-        print('\t accelerometer:')
-        print(self.accel)
-   
-    def displayMagnetometerData(self):
-        print('\t magnetometer:')
-        print(self.mag)
-    
-    def displayPressureData(self):
-        print('\t pressure sensor:')
-        print(self.pres)
-        
-    def displayHumidityData(self):
-        print('\t humidity sensor:')
-        print(self.humid)
+        def displayAccelerometerData(self):
+           
+            print('\t accelerometer:')
+            print(self.accel)
+        def displayMagnetometerData(self):
+            
+            print('\t magnetometer:')
+            print(self.mag)
+        def displayPressureData():
+          
+            print('\t pressure sensor:')
+            print(self.pres)
+        def displayHumidityData():
+            
+            print('\t humidity sensor:')
+            print(self.humid)
        
         # TODO: do the same for the magAddr, pressAddr, and humidAddr
         # NOTE: Reading data from the sensor will look like the following:
         #data = i2cBus.read_i2c_block_data({sensor address}, {starting read address}, {number of bytes}
     def run(self):
         while True:
-        # NOTE: you must implement these methods
-            self.displayAccelerometerData()
-            self.displayMagnetometerData()
-            self.displayPressureData()
-            self.displayHumidityData()
+            if self.enableEmulator:
+                # NOTE: you must implement these methods
+                self.displayAccelerometerData()
+                self.displayMagnetometerData()
+                self.displayPressureData()
+                self.displayHumidityData()
             sleep(self.rateInSec)

@@ -8,7 +8,7 @@ public class MqttPubClientTestApp {
 		private static MqttPubClientTestApp _App;
 		
 		// params
-		private MqttClientConnector _mqttClient;
+		private MqttConnector _mqttClient;
 		
 		/**
 		 * 
@@ -33,17 +33,15 @@ public class MqttPubClientTestApp {
 		 * to the given topic 2) If this is the publish app, publish a test message to
 		 * the given topic
 		 */
-		public void start() {
-			
-			_mqttClient = new MqttClientConnector("test.mosquitto.org","tcp",1883);
+		public void start() {		
+			_mqttClient = new MqttConnector("test.mosquitto.org","tcp",1883);
 			_mqttClient.connect();
-			String topicName = "test";
+			String topicName = "myActuatorData";
 			String payload = "A test.";
 			// only for publishing...
 			_mqttClient.publishMessage(topicName, 2, payload.getBytes());
-			_mqttClient.disconnect();
+			//_mqttClient.disconnect();
 		}
-
 	}
 
 

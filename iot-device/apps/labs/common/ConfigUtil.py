@@ -6,7 +6,7 @@ Created on Sep 15, 2018
 import configparser
 import os
 
-Default_CONFIG_FILE = '/home/pi/Desktop/iot-device/data/ConnectedDeviceConfig.props'
+Default_CONFIG_FILE = '/Users/stannis/eclipse-workspace2/iot-device/data/ConnectedDeviceConfig.props'
 
 class ConfigUtil():
     configfile = Default_CONFIG_FILE

@@ -3,6 +3,8 @@ Created on Oct 06, 2018
 
 @author: stannis
 '''
+import os,sys
+sys.path.append('/home/pi/Desktop/zexin/iot-device/apps')
 from time import sleep
 from sense_hat import SenseHat
 import threading
